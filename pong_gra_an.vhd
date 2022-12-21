@@ -124,11 +124,14 @@ begin
    ----------------------------------------------
    -- pixel within wall
    wall_y_t <= wall_y_reg;
-   wall_y_b <= wall_y_t - WALL_Y_SIZE -1;
-   wall_on <=
-      '1' when (WALL_X_L<=pix_x) and (pix_x<=WALL_X_R) and
-            (wall_y_t<=pix_y) and (pix_y<=wall_y_b) else
-      '0';
+   wall_y_b <= wall_y_t + WALL_Y_SIZE -1;
+   wall_on <= 
+--         '0' when (WALL_X_L>pix_x) and (pix_x>WALL_X_R) and
+--            (wall_y_t>pix_y) and (pix_y>wall_y_b) else
+--      '1';
+         '1' when (WALL_X_L<=pix_x) and (pix_x<=WALL_X_R) and
+         (wall_y_t<=pix_y) and (pix_y<=wall_y_b) else
+   '0';      
    -- wall rgb output
 	--mudando para 8 bits da Nexys2
    wall_rgb <= "000000001111"; -- blue
